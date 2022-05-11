@@ -2,7 +2,7 @@ import React from "react";
 
 class Toggler extends React.Component {
   state = {
-    isShown: true,
+    isShown: this.props.defaultOnValue,
   };
 
   handleClick = () => {
@@ -13,23 +13,28 @@ class Toggler extends React.Component {
     });
   };
 
-  render() {
-    const Component = this.props.component;
+  static defaultProps = {
+    defaultOnValue: true,
+  };
 
+  render() {
     return (
-      <Component
-        on={this.state.isShown}
-        toggle={this.handleClick}
-        {...this.props}
-      />
+      <div>
+        {this.props.render({
+          on: this.state.isShown,
+          handleClick: this.handleClick,
+        })}
+      </div>
     );
   }
 }
 
-function withToggler(component) {
-  return function (props) {
-    return <Toggler component={component} {...props} />;
-  };
-}
+// function withToggler(component) {
+//   return function (props) {
+//     return <Toggler component={component} {...props} />;
+//   };
+// }
 
-export default withToggler;
+// export default withToggler;
+
+export default Toggler;

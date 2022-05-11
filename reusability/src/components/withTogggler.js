@@ -1,15 +1,21 @@
 import React from "react";
-import withToggler from "./reusability";
-class Toggle extends React.Component {
-  render() {
-    return (
-      <div>
-        <p>click here to toggle</p>
+import Toggler from "./reusability";
 
-        <span onClick={this.props.toggle}>{this.props.on ? "💟" : "💗 "}</span>
-      </div>
-    );
-  }
+function Toggle(props) {
+  return (
+    <Toggler
+      defaultOnValue={false}
+      render={function (obj) {
+        return (
+          <div>
+            <p>click here to toggle</p>
+
+            <span onClick={obj.handleClick}>{obj.on ? "💟" : "💗 "}</span>
+          </div>
+        );
+      }}
+    />
+  );
 }
 
-export default withToggler(Toggle);
+export default Toggle;
