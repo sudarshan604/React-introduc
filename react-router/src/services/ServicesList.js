@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 function ServiceList() {
   const services = Data.map((dat) => (
     <h2 key={dat._id}>
-      <Link to={`"services"/${dat._id}`}>{dat.name}</Link>
+      <Link to={`/Services/${dat._id}`}>{dat.name}</Link>
       --{dat.price}{" "}
     </h2>
   ));
